@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'be_$q(w$m+ng@xv+rc+$@+#&+g)u@@b34yvm6(s-cu)-x+5f)k'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -135,3 +135,8 @@ MEDIA_ROOT = os.path.join(STATICFILES_DIRS[0], 'media')
 MEDIA_URL = '/media/'
 
 STATIC_URL = '/static/'
+
+try:
+    from .local_settings import *
+except ImportError:
+    pass

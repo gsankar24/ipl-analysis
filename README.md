@@ -44,7 +44,12 @@ To get a local copy up and running follow these simple steps.
    ```sh
    python manage.py loadmatchescsv 'data/matches.csv'
    ```
-3. Run server
+3. Create local_settings.py file
+    ```sh
+   cp ipl_matches/local_settings.example.py ipl_matches/local_settings.py
+   ```
+
+4. Run server
     ```sh
    python manage.py runserver
    ```
