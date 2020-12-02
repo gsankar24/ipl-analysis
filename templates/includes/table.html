@@ -1,0 +1,75 @@
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Status</th>
+        <th>Result</th>
+        <th>Graph</th>
+    </tr>
+    </thead>
+    <tbody class="season-result">
+        {% include "includes/table_body.html" %}
+    </tbody>
+</table>
+{% block js %}
+    <script type="text/javascript">
+        var csrfmiddlewaretoken = "{{csrf_token}}";
+        $(".view-graph").on('click', function(e){
+            url = $(this).data("url");
+            $.ajax({
+                url: url,
+                type: "GET",
+                data: {"csrfmiddlewaretoken": csrfmiddlewaretoken},
+                success: function(res) {
+                    Highcharts.chart('high-chart-container', {
+                        chart: {
+                            type: 'column'
+                        },
+                        title: {
+                            text: res['title']
+                        },
+                        xAxis: {
+                            type: 'category',
+                            labels: {
+                                rotation: -45,
+                                style: {
+                                    fontSize: '13px',
+                                    fontFamily: 'Verdana, sans-serif'
+                                }
+                            }
+                        },
+                        yAxis: {
+                            min: 0,
+                            title: {
+                                text: res['y-axis-title']
+                            }
+                        },
+                        legend: {
+                            enabled: false
+                        },
+                        tooltip: {
+                            pointFormat: res['pointer-text']+'<b>{point.y}</b>'
+                        },
+                        series: [{
+                            name: res['data-name'],
+                            data: res['data'],
+                            dataLabels: {
+                                enabled: true,
+                                rotation: -90,
+                                color: '#FFFFFF',
+                                align: 'right',
+                                y: 10, // 10 pixels down from the top
+                                style: {
+                                    fontSize: '13px',
+                                    fontFamily: 'Verdana, sans-serif'
+                                }
+                            }
+                        }]
+                    });
+
+                    $("#myModal").modal();
+                }
+            }); 
+            
+        })
+    </script>
+{% endblock %}

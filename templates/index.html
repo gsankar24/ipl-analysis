@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block  content %}
+    <h2 class="ipl-title">IPLT20 Season Analysis</h2>
+    <div class="seasons-select">
+        <label>Season:</label> <select class="seasons">
+            {% for season in seasons %}
+            <option value={{season}} data-url="{% url 'home'%}?season={{season}}">{{season}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="season-table">
+         {% include "includes/table.html" %}
+    </div>
+{% endblock  %}
+{% block js %}
+    <script type="text/javascript">
+    $( document ).ready(function() {
+        var csrfmiddlewaretoken = "{{csrf_token}}";
+        $(".seasons").on('change',function(e){
+            var url = $(this).find(':selected').data("url");
+            $.ajax({
+                url: url,
+                type: "GET",
+                data: {"csrfmiddlewaretoken": csrfmiddlewaretoken},
+                success: function(res) {
+                    $(".season-table").html(res);
+                }
+            }); 
+        })
+    });
+</script>
+{% endblock %}

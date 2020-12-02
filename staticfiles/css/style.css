@@ -1,0 +1,45 @@
+.header {
+    /* background-color:#0045c2; */
+    background-image: linear-gradient(90deg,#19398a 12%,#1b4c92 50%,#19398a 89%);
+    color: #ffffff;
+    margin-top: 0;
+    padding: 10px 10px 10px 40px;
+}
+.header a{
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.footer{
+    text-align: center;
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    height: 2.5rem;
+    color: #d0cccc;
+}
+
+.ipl-title{
+    text-align: center;
+    padding-bottom: 20px;
+}
+.seasons{
+    padding: 5px;
+    cursor: pointer;
+}
+.seasons option{
+    cursor: pointer;
+}
+.seasons-select{
+    padding-bottom: 20px;
+}
+.seasons-select label{
+    font-size: 14px;
+    font-weight: bold;
+}
+.view-graph{
+    cursor: pointer;
+}
+.modal-header{
+    border-bottom: none;
+}

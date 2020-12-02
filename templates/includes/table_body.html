@@ -1,0 +1,17 @@
+{% load type_list_check %}
+{% include "includes/modal.html" %}
+{% for d in data %}
+    <tr>
+       <td>{{d.title}}</td>
+       {% if d.value|type_list_check %}
+         <td>{{d.value|join:', '}}</td>
+       {% else %}
+          <td>{{d.value}}</td>
+       {% endif %}
+       {% if d.graph_url %}
+         <td align="center" class="view-graph" data-url="{{d.graph_url}}"><i class="fa fa-eye" aria-hidden="true"></i></td>
+       {% else %}
+         <td align="center"><i class="fa fa-eye-slash" aria-hidden="true"></i></td>
+       {% endif %}
+    </tr>
+{% endfor %}
